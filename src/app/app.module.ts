@@ -6,11 +6,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { VisualizarScormComponent } from './visualizar-scorm/visualizar-scorm.component';
+import { SegundoScormComponent } from './segundo-scorm/segundo-scorm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VisualizarScormComponent
+    VisualizarScormComponent,
+    SegundoScormComponent
   ],
   imports: [
     BrowserModule,

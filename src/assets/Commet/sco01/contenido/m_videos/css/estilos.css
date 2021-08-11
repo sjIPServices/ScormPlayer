@@ -1,0 +1,254 @@
+body, html {
+	height: 100%;
+	margin: 0;
+	font-family: "gotham-regular", sans-serif;
+	color: #FFFFFF;
+	font-size: 14px;
+
+}
+
+
+@font-face {
+    font-family: "benton-bold";
+    src: url(../fonts/bentonsans_bold_regular.ttf);
+}
+@font-face {
+    font-family: "benton-regular";
+    src: url(../fonts/BentonSans_Regular.ttf);
+}
+
+@font-face {
+    font-family: "gotham-black";	
+
+	src: url('../fonts/GothamBlack.woff') format('woff'),
+         url('../fonts/GothamBlack.ttf') format('truetype'),
+         url('../fonts/GothamBlack.svg#gotham-black') format('svg'),
+  		 url('../fonts/GothamBlack.eot'),
+  		 url('../fonts/GothamBlack.woff2') format('woff2'),
+         url('../fonts/GothamBlack.eot?#iefix') format('embedded-opentype');
+}
+
+@font-face {
+    font-family: "gotham-regular";
+    src: url(../fonts/GothamMedium_0.ttf);
+}
+
+
+.texto-2{
+	font-family: "gotham-black";
+	font-size: 42px;
+	color: #ffffff;
+	
+}
+
+.sections {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.section {
+	position: absolute;
+	
+	padding-top: 10%;
+	width: 100%;
+	height: 100%;
+	
+}
+
+
+
+/*.section*/
+.two {
+	/*background: url(../img/fondo2.jpg);
+	background-position: center;
+	background-size: contain;*/
+}
+
+
+/* video-player */
+
+.video-player {
+  /*position: absolute;*/
+  /*width: 100%;  */
+  min-height: 360px;
+    /*left: 50%;
+    top: 50%;*/
+  /*
+	margin-top: -379px;
+  margin-left: -512px;
+	*/
+
+}
+
+.videogular-container {
+  position: relative;
+  width: 100%;
+  min-height: 360px;
+  /*top: 64px;*/
+  /*z-index: 98;*/
+}
+
+.video-close-button {
+  	position: absolute;
+  	top: 5px;
+  	right: 20px;
+  	z-index: 99;
+  	color: #ffffff;
+  	cursor: pointer;
+	background: #b5162a;
+	padding: 5px;
+	font-size: 10px;
+}
+
+.boton{
+	cursor:pointer;
+	border:none;
+	/*margin-left:0px;
+	margin-right: 20px;*/
+	
+	-webkit-filter: drop-shadow(2px 2px 2px rgba(0,0,0,0));
+	-moz-filter: drop-shadow(2px 2px 2px rgba(0,0,0,0));
+	-ms-filter: drop-shadow(2px 2px 2px rgba(0,0,0,0));
+	-o-filter: drop-shadow(2px 2px 2px rgba(0,0,0,0));
+	filter: drop-shadow(2px 2px 2px rgba(0,0,0,0));
+
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+.boton:hover{
+	/*text-decoration: none;
+	-webkit-filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
+	-moz-filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
+	-ms-filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
+	-o-filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
+	filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
+
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;*/
+
+}
+
+a{
+	text-decoration: none;
+	color: #ffffff;
+}
+a:hover{
+	text-decoration: none;
+	color: #ffffff;
+}
+.snap-drawers{
+	background: none;
+}
+
+.disabled {
+    /*color: #BABABA;*/
+    cursor: not-allowed;
+	
+	filter: url('#grayscale'); /* Versión SVG para IE10, Chrome 17, FF3.5, Safari 5.2 and Opera 11.6 */
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	filter: grayscale(100%); /* Para cuando es estándar funcione en todos */
+	filter: Gray(); /* IE4-8 and 9 */
+	
+	opacity:0.5;
+
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s eas
+	
+}
+
+video::-internal-media-controls-download-button {
+    display:none;
+}
+
+video::-webkit-media-controls-enclosure {
+    overflow:hidden;
+}
+
+video::-webkit-media-controls-panel {
+    width: calc(100% + 30px); /* Adjust as needed */
+}
+
+.barra1{
+	margin-right: 80px;
+}
+.barra2{
+	padding-left: 15px;
+	padding-right: 70px;
+	background: #89c6e2;
+}
+
+.hidden-n{
+	display: inline;
+}
+
+/* Ajustes*/ 
+@media (max-width:1080px){
+	.hidden-xs, .hidden-n{display:none!important}
+}
+
+/* Parpadeo para el botón de avanzar */
+.parpadea {
+  
+  animation-name: parpadeo;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-name:parpadeo;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+}
+
+a:focus { outline: none; text-decoration: none;} 
+a:focus { border: 0px; } 
+
+
+@-moz-keyframes parpadeo{  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes parpadeo {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+   100% { opacity: 1.0; }
+}
+
+@keyframes parpadeo {  
+  0% { opacity: 1.0; }
+   50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+/* Hasta aqui */
+
+.padre1 {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 25%; /* Son 5 botones, que dan un total de 75% */
+}
+
+.hijo{
+	margin:auto;
+	border:0px solid #fc0;	
+}
+
+.overlayPlayContainer{
+    filter: alpha(opacity=0);
+    opacity: 0;
+}

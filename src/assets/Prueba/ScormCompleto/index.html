@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>ScormCompleto </title>
+<meta name="author" content="SJ" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<meta name="description" content="Actividades interactivas Scrom" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<link rel="stylesheet" type="text/css" href="scrambled-list.css" />
+<script type="text/javascript" src="scrambled-list.js"></script>
+<link rel="stylesheet" type="text/css" href="interactive-video.css" />
+<script type="text/javascript" src="interactive-video.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+<body id="exe-node-0" class="exe-scorm" onunload="unloadPage(true)"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">Inicio</h1></div></header>
+<article class="iDevice_wrapper ListaIdevice em_iDevice em_iDevice_question" id="id1">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Actividad desplegable</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta1_115" class="block instructions iDevice_content">
+Lea y complete
+</section>
+
+<section class="activity" id="activity-1_116">
+<form name="cloze-form-1_116" action="#" class="activity-form cloze-form">
+<div id="cloze1_116">
+<input type="hidden" name="clozeVar1_116.feedbackId" id="clozeVar1_116.feedbackId" value="ta1_117"/>
+
+<p>Texto</p>
+<div class="block iDevice_buttons">
+<p>
+<input class="button" type="submit" name="getScore1_116" value="Comprobar"  id="getScore1_116" />
+
+<input type="button" name="feedback1_116" value="Mostrar retroalimentación" class="feedbackbutton cloze-feedback-toggler" />
+
+<input type="hidden" name="clozeOtras1_116" id="clozeOtras1_116" value="JXUwMDE3JXUwMDNiJXUwMDA2JXUwMDEzJXUwMDEyJXUwMDUzJXUwMDUwJXUwMDExJXUwMDBkJXUwMDBkJXUwMDAzJXUwMDEwJXUwMDEzJXUwMDEy"/>
+
+<input type="hidden" name="clozeFlag1_116.strictMarking" id="clozeFlag1_116.strictMarking" value="false" />
+<input type="hidden" name="clozeFlag1_116.checkCaps" id="clozeFlag1_116.checkCaps" value="false" />
+<input type="hidden" name="clozeFlag1_116.instantMarking" id="clozeFlag1_116.instantMarking" value="false" />
+<span class="js-hidden js-warning">Habilitar JavaScript</span>
+</p>
+</div>
+<div class="score js-feedback" id="clozeScore1_116"></div>
+</div>
+</form>
+</section>
+<section id="ta1_117" class="feedback js-feedback iDevice_content" style="display:none">
+<p>Retroalimentación</p>
+</section>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper QuizTestIdevice em_iDevice em_iDevice_question" id="id2">
+<script type="text/javascript">
+<!-- //<![CDATA[
+scorm.SetInteractionValue("cmi.score.scaled", "0");
+var numQuestions = 1;
+var rawScore = 0;
+var actualScore = 0;
+var question0;
+var key0 = 0;
+function getAnswer()
+        {
+            scorm.SetInteractionValue("cmi.interactions.0.id","key0b2");
+            scorm.SetInteractionValue("cmi.interactions.0.type","choice");
+            scorm.SetInteractionValue("cmi.interactions.0.correct_responses.0.pattern",
+                          "0");
+            
+            for (var i=0; i < 3; i++)
+            {
+               if (document.getElementById("quizForm2").key0b2[i].checked)
+               {
+                  question0 = document.getElementById("quizForm2").key0b2[i].value;
+                  scorm.SetInteractionValue("cmi.interactions.0.student_response",question0);
+                  break;
+               }
+            }
+           }
+        function calcRawScore(){
+
+            if (question0 == key0)
+            {
+               scorm.SetInteractionValue("cmi.interactions.0.result","correct");
+               rawScore++;
+            }
+            else
+            {
+               scorm.SetInteractionValue("cmi.interactions.0.result","wrong");
+            }
+        }
+       
+        function calcScore2()
+        {
+           computeTime();  // the student has stopped here.
+       
+           document.getElementById("quizForm2").submitB.disabled = true;
+       
+           getAnswer();
+    
+           calcRawScore();
+          
+           actualScore = Math.round(rawScore / numQuestions * 100);
+                    // var msg_str ="Su puntuación es %d%%";            alert(msg_str.replace("%d",actualScore).replace("%%","%"));  
+          
+           scorm.SetScoreRaw(actualScore+"" );
+           scorm.SetScoreMax(100);
+           scorm.SetScoreMin(0);
+          
+           var mode = scorm.GetMode();
+
+               if ( mode != "review"  &&  mode != "browse" ){
+                 if ( actualScore < 50 )
+                 {
+                   scorm.SetCompletionScormActivity("incomplete");
+                   scorm.SetSuccessStatus("failed");
+                   if (scorm.version == '2004') {
+                       scorm.SetInteractionValue("cmi.score.scaled", actualScore/100);
+                   }
+                 }
+                 else
+                 {
+                   scorm.SetCompletionScormActivity("completed");
+                   scorm.SetSuccessStatus("passed");
+                   if (scorm.version == '2004') {
+                       scorm.SetInteractionValue("cmi.score.scaled", actualScore/100);
+                   }
+                 }
+
+                 scorm.SetExit("");
+                 }
+
+         exitPageStatus = true;
+    
+    
+         scorm.save();
+    
+         scorm.quit();
+         
+        }
+//]]> -->
+</script>
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Cuestionario SCORM</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<form name="quizForm2" id="quizForm2" action="#" class="quiz-test-form">
+<input type="hidden" name="passrate" id="passrate-2" value="50" />
+<section class="question">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion0b2" class="block iDevice_content">
+<p>Pregunta</p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="key0b21" class="sr-av"><a href="#answer-key0b21">Opción 1</a></label><input type="radio" name="key0b2" id="key0b21" value="0" />
+</p>
+<div class="iDevice_answer-content" id="answer-key0b21">
+<div id="taoptionAnswer0q0b2" class="block iDevice_content">
+<p>Opción #1 (Correcta)</p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="key0b22" class="sr-av"><a href="#answer-key0b22">Opción 2</a></label><input type="radio" name="key0b2" id="key0b22" value="1" />
+</p>
+<div class="iDevice_answer-content" id="answer-key0b22">
+<div id="taoptionAnswer1q0b2" class="block iDevice_content">
+<p>Opción #2</p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="key0b23" class="sr-av"><a href="#answer-key0b23">Opción 3</a></label><input type="radio" name="key0b2" id="key0b23" value="2" />
+</p>
+<div class="iDevice_answer-content" id="answer-key0b23">
+<div id="taoptionAnswer2q0b2" class="block iDevice_content">
+<p>Opción #3</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<div class="block iDevice_buttons">
+<p><input type="submit" name="submitB" value="ENVIAR RESPUESTAS" /> <span class="js-hidden js-warning">Habilitar JavaScript</span></p>
+</div>
+<div id="quizFormScore2"></div>
+</form>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ScrambledListIdevice em_iDevice em_iDevice_activity" id="id3">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Lista desordenada</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta3_115_2" class="block iDevice_content">
+<div class="exe-sortableList"><div class="exe-sortableList-instructions"><p>Instrucciones</p></div><ul class="exe-sortableList-list"><li>Primero</li><li>Segundo</li><li>Tercero</li><li>Cuarto</li><li>Quinto</li></ul><div style="display:none"><p class="exe-sortableList-buttonText">Comprobar</p><p class="exe-sortableList-rightText">¡Correcto!</p><p class="exe-sortableList-wrongText">No es correcto... Respuesta correcta:</p></div></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper MultichoiceIdevice em_iDevice em_iDevice_question" id="id4">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Pregunta de Elección Múltiple</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<form name="multi-choice-form-4_86" action="#" onsubmit="return false" class="activity-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion4_86" class="block question iDevice_content">
+<p>Pregunta</p>
+</div>
+<section class="iDevice_hint">
+<h1 class="iDevice_hint_title">Sugerencia</h1>
+<div class="iDevice_hint_content js-hidden">
+<div id="tahint4_86" class="block iDevice_content">
+<p>Sugerencia</p>
+</div>
+</div>
+</section>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i4_89" class="sr-av"><a href="#answer-4_89">Opción 1</a></label><input type="radio" name="option4_86" id="i4_89" class="exe-radio-option exe-radio-option-0-2-4_86-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-4_89"><div id="taans4_89" class="block iDevice_content">
+<p>Opcion #1</p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i4_209" class="sr-av"><a href="#answer-4_209">Opción 2</a></label><input type="radio" name="option4_86" id="i4_209" class="exe-radio-option exe-radio-option-1-2-4_86-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-4_209"><div id="taans4_209" class="block iDevice_content">
+<p>Opción #2 (Correcta)</p>
+</div>
+</div>
+</section>
+</section>
+<section class="iDevice_feedbacks js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<section id="sa0b4_86" class="feedback js-hidden">
+<div id="taf4_89" class=" iDevice_content">
+<p>Falso</p>
+</div>
+</section>
+<section id="sa1b4_86" class="feedback js-hidden">
+<div id="taf4_209" class=" iDevice_content">
+<p>Correcta</p>
+</div>
+</section>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-4_89">Incorrecto</a><span> (<a href="#sa0b4_86">Retroalimentación</a>)</span></li>
+<li><a href="#answer-4_209">Opción correcta</a><span> (<a href="#sa1b4_86">Retroalimentación</a>)</span></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper MultiSelectIdevice em_iDevice em_iDevice_question" id="id6">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Pregunta de Selección Múltiple</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<div id="actitity-6_108">
+<form name="multi-select-form-6_108" action="#" class="activity-form multi-select-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion6_108" class="block question iDevice_content">
+<p>Pregunta</p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op6_1080" class="sr-av"><a href="#answer-6_111">Opción 1</a></label><input type="checkbox" id="op6_1080" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-6_111"><div id="taans6_111" class="block iDevice_content">
+<p>Opción #1 (Correcto)</p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-6_1080" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op6_1081" class="sr-av"><a href="#answer-6_214">Opción 2</a></label><input type="checkbox" id="op6_1081" value="False" />
+</p>
+<div class="iDevice_answer-content" id="answer-6_214"><div id="taans6_214" class="block iDevice_content">
+<p>Opción #2</p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-6_1081" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op6_1082" class="sr-av"><a href="#answer-6_216">Opción 3</a></label><input type="checkbox" id="op6_1082" value="False" />
+</p>
+<div class="iDevice_answer-content" id="answer-6_216"><div id="taans6_216" class="block iDevice_content">
+<p>Opción #3 (Correcto)</p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-6_1082" style="display:none"></section>
+</section>
+</section>
+<div class="block iDevice_buttons feedback-button js-required">
+<p>
+<input type="button" name="submitSelect" class="feedbackbutton multi-select-feedback-toggler" value="Mostrar retroalimentación" id="multi-select-feedback-toggler-3-6_108" /> 
+</p>
+</div>
+<section id="f6_108" class="js-hidden js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+
+<div id="tafeedback6_108" class="feedback iDevice_content">
+<p>Retroalimentación</p>
+</div>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-6_111" class="right">Correcto</a></li>
+<li><a href="#answer-6_214" class="wrong">Incorrecto</a></li>
+<li><a href="#answer-6_216" class="wrong">Incorrecto</a></li>
+</ol>
+</section>
+</div>
+</section>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper TrueFalseIdevice em_iDevice em_iDevice_question" id="id7">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Pregunta Verdadero-Falso</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta7_100" class="block iDevice_content">
+<p>Instrucciones</p>
+</div>
+<section class="question">
+<form name="true-false-form-0b7" action="#" class="activity-form">
+<h1 class="js-sr-av">Pregunta 1</h1>
+<div id="taquestion0b7" class="block iDevice_content">
+<p>Pregunta (Es verdadero)</p>
+</div>
+<section class="iDevice_hint">
+<h1 class="iDevice_hint_title">Sugerencia</h1>
+<div class="iDevice_hint_content js-hidden">
+<p>Sugerencia</p></div>
+</section>
+<p class="iDevice_answer js-required">
+<label for="true0b7"><input type="radio" name="option0b7" id="true0b7" class="exe-radio-option exe-radio-option-0-2-0b7-truefalse" /> Verdadero</label> 
+<label for="false0b7"><input type="radio" name="option0b7" id="false0b7" class="exe-radio-option exe-radio-option-1-2-0b7-truefalse" /> Falso</label>
+</p>
+</form>
+<section id="s0b7" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p><strong id="s0b7-result" class="right">Verdadero</strong></p>
+<p>Retroalimentación</p>
+</section>
+</section>
+<section class="question">
+<form name="true-false-form-1b7" action="#" class="activity-form">
+<h1 class="js-sr-av">Pregunta 2</h1>
+<div id="taquestion1b7" class="block iDevice_content">
+<p>Pregunta (Es falso)</p>
+</div>
+<section class="iDevice_hint">
+<h1 class="iDevice_hint_title">Sugerencia</h1>
+<div class="iDevice_hint_content js-hidden">
+<p>Sugerencias</p></div>
+</section>
+<p class="iDevice_answer js-required">
+<label for="true1b7"><input type="radio" name="option1b7" id="true1b7" class="exe-radio-option exe-radio-option-0-2-1b7-truefalse" /> Verdadero</label> 
+<label for="false1b7"><input type="radio" name="option1b7" id="false1b7" class="exe-radio-option exe-radio-option-1-2-1b7-truefalse" /> Falso</label>
+</p>
+</form>
+<section id="s1b7" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p><strong id="s1b7-result" class="wrong">Falso</strong></p>
+<p>Retroalimentación</p>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ClozeIdevice em_iDevice em_iDevice_question" id="id8">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Rellenar huecos</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta8_104" class="block instructions iDevice_content">
+Lea el párrafo que aparece abajo y complete las palabras que faltan.
+</section>
+
+    <section class="activity" id="activity-8_105">
+<form name="cloze-form-8_105" action="#" class="activity-form cloze-activity-form">
+<div id="cloze8_105">
+<input type="hidden" name="clozeFlag8_105.strictMarking" id="clozeFlag8_105.strictMarking" value="false"/>
+
+<input type="hidden" name="clozeFlag8_105.checkCaps" id="clozeFlag8_105.checkCaps" value="false"/>
+
+<input type="hidden" name="clozeFlag8_105.instantMarking" id="clozeFlag8_105.instantMarking" value="false"/>
+
+<input type="hidden" name="clozeVar8_105.feedbackId" id="clozeVar8_105.feedbackId" value="ta8_106"/>
+
+<p>Texto con huecos que rellenar</p>
+<div class="block iDevice_buttons">
+<p>
+<input class="button" type="submit" name="submit8_105" value="Enviar"  id="submit8_105" />
+
+<input type="button" name="restart8_105" value="Reiniciar" style="display:none" id="restart8_105" onclick="$exe.cloze.restart('8_105')" />
+
+ 
+<input type="button" name="8_105showAnswersButton" value="Mostrar las respuestas" style="display:none" id="showAnswersButton8_105" onclick="$exe.cloze.fillInputs('8_105')" />
+
+<span class="js-hidden js-warning">Habilitar JavaScript</span>
+</p>
+</div>
+<div id="clozeScore8_105"></div>
+</div>
+</form>
+</section>
+    <section id="ta8_106" class="feedback js-feedback iDevice_content" style="display:none">
+<p>Retroalimentación</p>
+</section>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper interactive-videoIdevice em_iDevice em_iDevice_presentation" id="id11">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Vídeo interactivo</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta11_123_2" class="block iDevice_content">
+			<div class="exe-interactive-video">				<p id="exe-interactive-video-file" class="js-hidden">					<a href="Avicii_-_The_Nights_360P.mp4">mp4</a>				</p>				<script type="text/javascript">//<![CDATA[					
+var InteractiveVideo = {"slides":[{"type":"text","text":"<p>Texto</p>","startTime":8}],"i18n":{"start":"Inicio","results":"Resultados","slide":"Diapositiva (fotograma)","score":"Puntuación","seen":"Visto","total":"Total","seeAll":"debe ver todo el contenido y contestar a las preguntas","noSlides":"El vídeo no tiene contenidos interactivos.","goOn":"Continuar","error":"Error","dataError":"Código no compatible","onlyOne":"Sólo un vídeo interactivo por página.","cover":"Portada","fsWarning":"Salga del modo pantalla completa (tecla Esc) para ver la diapositiva","right":"¡Correcto!","wrong":"Incorrecto","sortableListInstructions":"Pinche y arrastre o use las flechas.","up":"Subir","down":"Bajar","rightAnswer":"Respuesta correcta:","notAnswered":"Por favor termine la actividad","check":"Comprobar","newWindow":"Ventana nueva"}}				//]]></script>			</div><p class="sr-av"><video width="320" height="240" controls="controls" class="mediaelement"><source src="Avicii_-_The_Nights_360P.mp4" /></video></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+</div>
+<script type="text/javascript" src="_style_js.js"></script></body></html>

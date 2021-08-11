@@ -1,0 +1,21 @@
+{
+  "name": "AngularJS SCORM Wrapper",
+  "main": "",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "homepage": "https://github.com/andydennis/angularjs-scorm-wrapper",
+  "_release": "350fb9a450",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "350fb9a450aac3bcaf4889007a0c5682dd86f7ea"
+  },
+  "_source": "https://github.com/andydennis/angularjs-scorm-wrapper.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/andydennis/angularjs-scorm-wrapper.git",
+  "_direct": true
+}

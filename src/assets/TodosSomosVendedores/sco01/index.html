@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="plantillaApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="plantillaApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="plantillaApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="plantillaApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>:: Contenido ::</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' type='image/x-icon' href='img/favicon.png' />
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/estilos.css" media="screen, handheld" />
+
+  <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="fonts/font-client/font-client.css">
+
+  <link rel="stylesheet" href="bower_components/ng-zav-modal/dist/ng-zav-modal.min.css">
+
+ <!-- VIDEGULAR -->
+  <link rel="stylesheet" type="text/css" href="bower_components/videogular-themes-default/videogular.css">
+
+  <link rel="stylesheet" type="text/css" href="css/angular-snap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/app.css" />
+
+  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+
+  <script type="text/javascript">
+      // IE9 fix
+    if(!window.console) {
+        var console = {
+            log : function(){},
+            warn : function(){},
+            error : function(){},
+            time : function(){},
+            timeEnd : function(){}
+        };
+    }    
+  </script>
+
+</head>
+<body ng-app="plantillaApp" ng-controller="plantillaAppController" ng-cloak>
+
+    <div snap-drawer style="display: none;">      
+          <table class="table table-menu" >
+            <tr>
+              <td class="menu_curso_titulo"><span style="font-size:25px; color:#FFF; padding-left:10px;">Índice Contenidos</span></td>
+            </tr>
+            <tr ng-repeat="page in pagesArray" ng-if="page.visible">
+              <td class="menu_item" ng-class-even="'menu_even'" ng-class-odd="'menu_odd'" ng-class="{'disabled': !page.done}" ng-click="goToPage( $index + 1);">
+                <span ng-class="{'glyphicon glyphicon-ok-circle':(page.done==true), 'glyphicon glyphicon-minus':(page.done==false)}" style="font-size:15px;"></span><i ng-class="{'menu_title': (page.level == 1), 'menu_subtitle': (page.level == 2), 'menu_sub_subtitle': (page.level == 3)}"></i>
+                  {{ page.title}}
+              </td>
+            </tr>         
+        </table>
+          <!-- end Menu -->
+    </div > <!-- end snap-drawer -->
+
+
+    <snap-content id="snapcontent">
+
+        <!-- Canvas -->
+      <div id="contepages" class="contenedorPaginas">
+           <!-- Video -->
+            <!--   <div id="video_player" class="video-player" ng-class="{hidden:!videoVisible}">  -->
+            <div id="video_player" class="video-player" ng-class="{hidden:!videoVisible}">
+
+                <!--<div class="video-close-button"><a href="#info3" ng-click="stopVideo()"><i class="fa fa-close fa-3x"></i></a></div>-->
+                <div class="videogular-container" id="video_container">
+                <videogular vg-player-ready="onPlayerReady($API)" vg-complete="onCompleteVideo()" vg-theme="config.theme">
+                  <vg-media vg-src="config.sources">
+                  </vg-media>
+
+                  <vg-controls vg-autohide="config.plugins.controls.autoHide" vg-autohide-time="config.plugins.controls.autoHideTime">
+                  <vg-play-pause-button></vg-play-pause-button>
+                  <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+                  <vg-scrub-bar>
+                    <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                  </vg-scrub-bar>
+                  <vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+                  <vg-volume>
+                    <vg-mute-button></vg-mute-button>
+                    <vg-volume-bar></vg-volume-bar>
+                  </vg-volume>
+                  <!---<vg-fullscreen-button></vg-fullscreen-button>--->
+                  </vg-controls>
+                  <vg-overlay-play></vg-overlay-play>
+                </videogular>
+                </div>
+
+              </div>
+
+              <!-- /Video -->
+      		<video id="video1" width="760" style="position:absolute; top:5px; left:5px; display:none; z-index:10;" controls>
+      		  <!-- <source src="videos/AnaquelProductosVISTA.mp4" type="video/mp4"> -->
+      		</video> 
+		  
+          <canvas-loader></canvas-loader>
+
+          <footer id="footer" ng-controller="navController" style="margin: 0 auto; width: 1024px;">
+              <div id="logos" class="pull-left">
+                  <img id="logo1" src="img/logo1.jpg">
+				  <!---
+                  <span id="titulo" class="footer-subtitulo">
+                  	VENDIENDO VALOR CON COMMET
+                  </span>
+				  --->
+				  <img id="titulo" src="img/titulo.png">
+                  <!---
+                  <img id="tema1" src="img/conocer.png" ng-class="{'hidden':pagesService.getPageStatus(pagesLength)}">
+                  <img id="tema5" src="img/conocer_check.png" ng-class="{'hidden':!pagesService.getPageStatus(pagesLength)}">
+                  <img id="tema2" src="img/comprender.png">
+                  <img id="tema3" src="img/conectar.png">
+                  <img id="tema4" src="img/concretar_in.png">   --->   
+ 
+                  <img style="display: none" id="tema1" src="img/conocer_check.png"> 
+                  <img style="display: none" id="tema2" src="img/comprender_check.png">
+                  <img style="display: none" id="tema3" src="img/conectar_check.png">
+                  <img style="display: none" id="tema4" src="img/concretar_in.png"> 
+				  
+              </div>
+              
+          	  
+              <div id="botonera_avance" class="pull-right" style="background: #d1d1d1;"> 
+                  <a href="#" id="botonAtras" ng-click="currentPage === 1 || goPrevious()" ng-class="{ 'disabled': currentPage === 1}"><img id="btn_back" src="img/btn_back.png" name="atras"></a>
+                  <fieldset id="paginadoTxt1" class="paginado">
+                      <div id="paginadoTxt" ng-cloak>{{currentPage}} / {{pagesLength}}</div>
+                  </fieldset>
+                  <a class="next-btn" href="#" id="botonAdelante" ng-click="currentPage === pagesLength || goNext()" ng-class="{'disabled': (currentPage === pagesLength || !currentPageStatus)}" style="position:relative;"><img id="btn_next2" src="img/btn_next2.png" name="adelante" ng-class="{'parpadea': brillar && currentPage < pagesLength}"></a>  
+              </div>
+              
+              <div id="pull_left" class="pull-right">
+                  <img style="display: none" id="btn_home" class="boton" ng-click="goToPage(1)" src="img/btn_menu.png">                 
+
+                  <img id="btn_audio" class="boton" ng-show="audio" ng-click="toogleAudio()" src="img/btn_audio_on.png">
+                  <img id="btn_audio_off" class="boton" ng-show="!audio" ng-click="toogleAudio()" src="img/btn_audio_off.png">
+
+                  <!--<img id="btn_ayuda" class="boton" ng-click="openHelp()" src="img/btn_ayuda.png">                  
+                  <img id="btn_glosario" class="boton" ng-click="openGlossary()" src="img/btn_glosario.png"> -->
+                  <!-- <img id="btn_temario" class="boton" ng-click="openTemario()" src="img/btn_temario.png"> -->
+                  <img id="btn_salida" class="boton" ng-click="openQuit()" src="img/btn_salida.png">				 
+              </div>
+              
+          </footer>
+
+          <input name="Text1" id="textos1" class="campoTexto" placeholder="Escribe aquí" style="display: none; position: absolute; z-index: 51; resize:none; background: none; outline: none;" />
+          <input name="Text2" id="textos2" class="campoTexto" placeholder="Escribe aquí" style="display: none; position: absolute; z-index: 51; resize:none; background: none; outline: none;" />
+          
+      </div>     
+    </snap-content>
+
+  <!-- Modal Windows -->
+
+
+  <zav-modal trigger="openHelpModal">
+    <div class="wrapperIndexModal">     
+        <iframe class="contenedorPaginasModal" id="frame1" ng-src="{{url_recurso}}"></iframe>
+      </div>
+  </zav-modal>
+
+  <zav-modal trigger="openTemarioModal">
+    <div class="wrapperIndexModal">     
+        <iframe class="contenedorPaginasModal" id="frame2" ng-src="{{url_recurso}}"></iframe>
+    </div>
+  </zav-modal>
+
+  <zav-modal trigger="openGlosarioModal">
+    <div class="wrapperIndexModal">
+        <iframe class="contenedorPaginasModal" id="frame3" ng-src="{{url_recurso}}"></iframe>
+    </div>
+  </zav-modal>
+
+  <zav-modal trigger="openQuitModal">
+    <div class="wrapperIndexModal">
+        <iframe class="contenedorPaginasModal" id="frame4" ng-src="{{url_recurso}}"></iframe>
+    </div>
+  </zav-modal>
+    
+  <zav-modal trigger="openSegurosModal">
+    <div class="wrapperIndexModal">
+        <iframe class="contenedorPaginasModal" id="frame5" ng-src="{{url_recurso}}"></iframe>
+    </div>
+  </zav-modal>
+
+  <zav-modal trigger="openBookMarkModal">
+    <div class="wrapperIndexModal">
+        <iframe class="contenedorPaginasModal" id="frame6" ng-src="{{url_recurso}}"></iframe>
+    </div>
+  </zav-modal>	
+
+
+
+
+   <!--End Modal Windows -->
+  <script src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+   <!-- MENU -->
+
+    <!-- snap.js -->
+     <script type="text/javascript" src="js/snap.js"></script>
+    <script type="text/javascript" src="js/angular-snap.js"></script>
+
+    <script type="text/javascript" src="bower_components/angular-scorm-wrapper/src/angular-scorm-wrapper.js"></script>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/gsap/src/minified/TweenMax.min.js"></script>
+    <script src="bower_components/ng-zav-modal/dist/ng-zav-modal.min.js"></script>
+
+    <script type="text/javascript" src="js/easeljs-0.8.1.min.js"></script>
+    <script type="text/javascript" src="js/movieclip-0.8.1.min.js"></script>
+    <script type="text/javascript" src="js/preloadjs-0.6.1.min.js"></script>
+    <!--<script type="text/javascript" src="js/soundjs-0.6.1.min.js"></script>-->
+    <script type="text/javascript" src="js/soundjs-NEXT.combined.js"></script>
+    <script type="text/javascript" src="js/tweenjs-0.6.1.min.js"></script>
+
+    <script type="text/javascript" src="bower_components/spin.js/spin.js"></script>
+    <script type="text/javascript" src="bower_components/angular-spinner/angular-spinner.min.js"></script>
+
+    <script type="text/javascript" src="bower_components/angular-load/angular-load.js"></script>
+
+        <!-- VIDEGULAR -->
+    <script type="text/javascript" src="bower_components/videogular/videogular.js"></script>
+    <script type="text/javascript" src="bower_components/videogular-controls/vg-controls.js"></script>
+    <script type="text/javascript" src="bower_components/videogular-buffering/vg-buffering.js"></script>
+    <script type="text/javascript" src="bower_components/videogular-overlay-play/vg-overlay-play.js"></script>
+
+    <script src="js/bd_usuario.js"></script>
+    <script src="js/bd_preguntas.js"></script>
+    <script src="js/activ.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>
