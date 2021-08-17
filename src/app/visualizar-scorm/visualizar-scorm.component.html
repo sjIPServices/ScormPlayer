@@ -1,5 +1,22 @@
 <!-- <p>visualizar-scorm works!</p> -->
-<div class="divScorm">
+<!-- <div class="divScorm">
     <ng-scorm-player [urlDirSco]="'../../../assets/Commet/sco01'" [urlLaunchPage]="'../../../assets/Commet/sco01/index.html'" class="IframeScorm"
     sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation allow-presentation"></ng-scorm-player>
+</div> -->
+
+<div class="divScorm">
+    <div class="divIframe">
+        <ng-scorm-player [urlDirSco]="'../../../assets/Prueba/ScormPruebas'" [urlLaunchPage]="'../../../assets/Prueba/ScormPruebas/index.html'" class="IframeScorm"
+        sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation allow-presentation"></ng-scorm-player>
+    </div>
+
+    <div class="datosScorm">
+        <h2 class="subTitlePage">Calificaciones</h2>
+
+        <!-- <p *ngIf="puntajeMax == 1 || puntajeMax == undefined || puntajeMax == null">Su puntaje es ...</p>
+        <p *ngIf="puntajeMax != undefined && puntajeMax != null &&  this.puntajeMax != 1">Su puntaje es: {{ puntajeMax }}</p> -->
+
+        <p>Su puntaje es: {{ puntajeMax }}</p>
+        <p *ngIf="puntajeMax == 0">Su puntaje es: {{ puntajeMax }}</p>
+    </div>
 </div>

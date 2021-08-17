@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScormService } from '../services/ScormPlayer-Services';
 
 @Component({
   selector: 'app-segundo-scorm',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SegundoScormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ScormPlayer: ScormService) { }
 
   ngOnInit(): void {
+    // this.ScormPlayer.initializationScorm();
+
+    // this.ScormPlayer.getData();
   }
 
 }

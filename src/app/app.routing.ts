@@ -3,11 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { VisualizarScormComponent } from './visualizar-scorm/visualizar-scorm.component';
 import { SegundoScormComponent } from './segundo-scorm/segundo-scorm.component';
+import { ExeLearningComponent } from './exe-learning/exe-learning.component';
 
 const appRoutes: Routes = [
     {path: '', component: VisualizarScormComponent},
-    {path: 'VisualizarScorm', component: VisualizarScormComponent},
-    {path: 'SegundoScorm', component: SegundoScormComponent},
+    {path: 'primero', component: VisualizarScormComponent},
+    {path: 'segundo', component: SegundoScormComponent},
+    {path: 'exe', component: ExeLearningComponent},
     {path: '**', component: VisualizarScormComponent}
 ];
 
