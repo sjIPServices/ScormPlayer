@@ -8,43 +8,102 @@ import { NgScormPlayerService } from 'ng-scorm-player';
 })
 export class ScormSolisticaComponent implements OnInit {
 
-  contadorVideo: number = 0;
-  textoVideo: string = "No ha iniciado el curso";
+  // contadorVideo: number = 0;
+  // textoVideo: string = "No ha iniciado el curso";
   mensajesTSV: Array<any>;
+  nuevaPagina: string;
+  adelantar: string;
 
   constructor(private player: NgScormPlayerService) {
     this.mensajesTSV = [
       { 1: "Inició el Scorm" },
-      { 2: "Inició el video" },
+      { 2: "Inició el curso" },
       { 3: "Finalizo el video" },
       { 4: "Se dirije a la siguiente sección" },
       { 5: "Finalizo esta sección" }
     ];
+
+    this.nuevaPagina = "";
+
+    this.adelantar = "1|1|0|0|0|0|0|0|0|0|0|0|0&&3&&";
   }
 
   ngOnInit(): void {
-    this.getData();
+    // this.getData();
+    // this.cambioPagina();
+    this.avanzarScorm();
+
+    this.player.SetValue(["cmi.core.lesson_location"], this.adelantar);
+    this.player.MySetValue(["cmi.core.lesson_location"], this.adelantar);
+    this.player.LMSSetValue(["cmi.core.lesson_location"], this.adelantar);
   }
 
+  avanzarScorm(){
+    this.player.SetValue(["cmi.core.lesson_location"], "1|1|0|0|0|0|0|0|0|0|0|0|0&&3&&");
+  }
+
+
+
   getData(){
-    this.player.initializeEvent.subscribe(val => { console.log("Mio 1 - " + 'initializeEvent:', val); }); 
+    // this.player.initializeEvent.subscribe(val => { console.log("Mio 1 - " + 'initializeEvent:', val); }); 
     this.player.setValueEvent.subscribe(val => { console.log("Mio 2 - " + 'setValueEvent:', val); }); 
-    this.player.getValueEvent.subscribe(val => { console.log("Mio 3 - " + 'getValueEvent:', val); }); 
-    this.player.finishEvent.subscribe(val => { console.log("Mio 4 - " + 'finishEvent:', val); }); 
-    this.player.commitEvent.subscribe(val => { console.log("Mio 5 - " + this.metodoPrueba() + 'commitEvent:', val); });
+    // this.player.getValueEvent.subscribe(val => { console.log("Mio 3 - " + 'getValueEvent:', val); }); 
+    // this.player.finishEvent.subscribe(val => { console.log("Mio 4 - " + 'finishEvent:', val); }); 
+    this.player.commitEvent.subscribe(val => { console.log("Mio 5 - " + 'commitEvent:', val); });
     // this.player.commitEvent.subscribe(val => { console.log("Mio 5 - " + 'commitEvent:', val); });
 
   }
 
-  metodoPrueba(){
-    // this.contadorVideo = this.contadorVideo;
-    
-    alert(this.mensajesTSV[this.contadorVideo][this.contadorVideo = ++ this.contadorVideo]);
+  cambioPagina(){
+    this.player.SetValue(["cmi.core.lesson_location"], this.adelantar);
+    this.player.MySetValue(["cmi.core.lesson_location"], this.adelantar);
+    this.player.LMSSetValue(["cmi.core.lesson_location"], this.adelantar);
 
-    if(this.contadorVideo == 5){
-      this.contadorVideo = 2;
-      alert(this.mensajesTSV[this.contadorVideo][this.contadorVideo = ++ this.contadorVideo]);
-    }
+    this.player.setValueEvent.subscribe(val => {
+      this.player.SetValue(["cmi.core.lesson_location"], this.adelantar);
+      this.player.MySetValue(["cmi.core.lesson_location"], this.adelantar);
+      this.player.LMSSetValue(["cmi.core.lesson_location"], this.adelantar);
+    }); 
+
+
+    this.player.commitEvent.subscribe(val => {
+
+      this.player.SetValue(["cmi.core.lesson_location"], this.adelantar);
+      this.player.MySetValue(["cmi.core.lesson_location"], this.adelantar);
+      this.player.LMSSetValue(["cmi.core.lesson_location"], this.adelantar);
+
+      // // console.log("Mio 5 - ", val.runtimeData["cmi.core.lesson_location"]);
+      // let paginaScorm = val.runtimeData["cmi.core.lesson_location"]
+
+      // if(this.nuevaPagina == "" && paginaScorm != undefined){
+      //   this.nuevaPagina = paginaScorm;
+      //   console.log("Miooooo ---- " + this.nuevaPagina);
+      //   //alert("Se modifico la variable");
+      //   console.log("Mi variable " + typeof(this.nuevaPagina));
+      //   console.log("Variable del scorm " + typeof(paginaScorm));
+
+      // }else if(this.nuevaPagina == paginaScorm && this.nuevaPagina != ""){
+      //   //alert("Son iguales");
+      //   console.log("Son iguales");
+      //   console.log("Mi variable ------------ " + this.nuevaPagina);
+      //   console.log("variable del scorm ----- " + paginaScorm);
+
+      // }else if(this.nuevaPagina != paginaScorm && this.nuevaPagina != ""){
+      //   //alert("Son diferentes");
+      //   console.log("Son diferentes");
+      //   console.log("Mi variable ------------ " + this.nuevaPagina);
+      //   console.log("variable del scorm ----- " + paginaScorm);
+
+      // }
+      
+    });
+
+    // alert(this.mensajesTSV[this.contadorVideo][this.contadorVideo = ++ this.contadorVideo]);
+
+    // if(this.contadorVideo == 5){
+    //   this.contadorVideo = 2;
+    //   alert(this.mensajesTSV[this.contadorVideo][this.contadorVideo = ++ this.contadorVideo]);
+    // }
 
   }
 

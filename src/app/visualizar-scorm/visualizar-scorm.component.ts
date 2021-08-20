@@ -28,26 +28,33 @@ export class VisualizarScormComponent implements OnInit {
   // }
 
   getData(){
-    setInterval(()=>{
+    // setInterval(()=>{
 
-        if(this.player.scormResult == undefined){
-          this.puntajeMax = "En proceso";
-        }else if(this.player.scormResult == null){
-          this.puntajeMax = "En proceso";
-        }else{
-          this.puntajeMax = this.player.scormResult.scorePercent;
-        }
+    //   this.player.commitEvent.subscribe(val => { console.log("Mio 5 - " + 'commitEvent:', val); });
 
-        // if(this.player.scormResult.runtimeData != undefined){
-        //   console.log(this.player.scormResult.runtimeData["cmi.completion_status"]);
-        // }
+    //     // if(this.player.scormResult == undefined){
+    //     //   this.puntajeMax = "En proceso";
+    //     // }else if(this.player.scormResult == null){
+    //     //   this.puntajeMax = "En proceso";
+    //     // }else{
+    //     //   this.puntajeMax = this.player.scormResult.scorePercent;
+    //     // }
 
-    }, 500);
+    //     // if(this.player.scormResult.runtimeData != undefined){
+    //     //   console.log(this.player.scormResult.runtimeData["cmi.completion_status"]);
+    //     // }
 
-    this.player.initializeEvent.subscribe(val => { console.log('initializeEvent:', val); }); 
-    this.player.setValueEvent.subscribe(val => { console.log('setValueEvent:', val); }); 
-    this.player.getValueEvent.subscribe(val => { console.log('getValueEvent:', val); }); 
-    this.player.finishEvent.subscribe(val => { console.log('finishEvent:', val); }); 
-    this.player.commitEvent.subscribe(val => { console.log('commitEvent:', val); });
+    // }, 500);
+
+    this.player.initializeEvent.subscribe(val => { console.log("Mio 1 - " + 'initializeEvent:', val); }); 
+    this.player.setValueEvent.subscribe(val => { console.log("Mio 2 - " + 'setValueEvent:', val); }); 
+    this.player.getValueEvent.subscribe(val => { console.log("Mio 3 - " + 'getValueEvent:', val); }); 
+    this.player.finishEvent.subscribe(val => { console.log("Mio 4 - " + 'finishEvent:', val); }); 
+    this.player.commitEvent.subscribe(val => { 
+      console.log("Mio 5 - " + 'commitEvent:', val); 
+      let paginaScorm = val.runtimeData["cmi.core.lesson_location"];
+      console.log(paginaScorm);
+
+    });
   }
 }
