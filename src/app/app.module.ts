@@ -1,26 +1,25 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-// import { CommonModule } from "@angular/common";
 import { routing, appRouingProviders } from './app.routing';
-import { NgScormPlayerModule } from 'ng-scorm-player';
 import { HttpClientModule } from '@angular/common/http';
+import { AppComponent } from './app.component';
+
+// Librerias - Servicios
+import { NgScormPlayerModule } from 'ng-scorm-player';
 import { ScormService } from './services/ScormPlayer-Services';
 
-import { AppComponent } from './app.component';
+// Componentes
 import { VisualizarScormComponent } from './visualizar-scorm/visualizar-scorm.component';
-import { SegundoScormComponent } from './segundo-scorm/segundo-scorm.component';
-import { ExeLearningComponent } from './exe-learning/exe-learning.component';
+import { ScormSolisticaComponent } from './scorm-solistica/scorm-solistica.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VisualizarScormComponent,
-    SegundoScormComponent,
-    ExeLearningComponent
+    ScormSolisticaComponent
   ],
   imports: [
     BrowserModule,
-    // CommonModule,
     HttpClientModule,
     routing,
     NgScormPlayerModule.forChild({debug : true})

@@ -1,0 +1,24 @@
+
+<div class="divScorm">
+    <!-- <div class="divIframe">
+        <ng-scorm-player [urlDirSco]="'../../../assets/Commet/sco01'" [urlLaunchPage]="'../../../assets/Commet/sco01/index.html'" class="IframeScorm"
+        sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation allow-presentation"></ng-scorm-player>
+    </div> -->
+    
+    <div class="divIframe">
+        <ng-scorm-player [urlDirSco]="'../../../assets/TodosSomosVendedores/sco01'" [urlLaunchPage]="'../../../assets/TodosSomosVendedores/sco01/index.html'" class="IframeScorm"
+        sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation allow-presentation"></ng-scorm-player>
+    </div>
+
+
+
+    <div>
+        <h2 class="subTitlePage">Calificaciones</h2>
+
+        <p *ngIf="contadorVideo == 0">{{ textoVideo }} El numero es: {{ contadorVideo }}</p>
+        <p *ngIf="contadorVideo == 1">{{ textoVideo }} El numero es: {{ contadorVideo }}</p>
+        <p *ngIf="contadorVideo == 2">{{ textoVideo }} El numero es: {{ contadorVideo }}</p>
+    </div>
+
+</div>
+

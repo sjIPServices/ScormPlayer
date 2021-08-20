@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SegundoScormComponent } from './segundo-scorm.component';
+import { ScormSolisticaComponent } from './scorm-solistica.component';
 
-describe('SegundoScormComponent', () => {
-  let component: SegundoScormComponent;
-  let fixture: ComponentFixture<SegundoScormComponent>;
+describe('ScormSolisticaComponent', () => {
+  let component: ScormSolisticaComponent;
+  let fixture: ComponentFixture<ScormSolisticaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SegundoScormComponent ]
+      declarations: [ ScormSolisticaComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SegundoScormComponent);
+    fixture = TestBed.createComponent(ScormSolisticaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

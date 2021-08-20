@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgScormPlayerService } from "ng-scorm-player";
 
 @Component({
@@ -6,35 +6,48 @@ import { NgScormPlayerService } from "ng-scorm-player";
   templateUrl: './visualizar-scorm.component.html',
   styleUrls: ['./visualizar-scorm.component.css']
 })
-export class VisualizarScormComponent implements OnInit, OnDestroy {
+export class VisualizarScormComponent implements OnInit {
   
   // name: number;
-  puntajeMax: number = 0;
+  puntajeMax: any = "Sin iniciar";
 
   constructor(private player: NgScormPlayerService){}
 
   ngOnInit(): void {
-    this.initializationScorm();
+    // this.initializationScorm();
     this.getData();
-
+    
   }
 
-  ngOnDestroy(): void {
-    alert("Esta saliendo del Scorm");
-  }
-
-  initializationScorm(){
-    if(this.player.Initialize()){
-      console.log("El scorm se inicializo correctamente.");
-    }else{
-      console.log("Error al imprimir el scorm, por favor valide.");
-    }
-  }
+  // initializationScorm(){
+  //   if(this.player.Initialize()){
+  //     console.log("El scorm se inicializo correctamente.");
+  //   }else{
+  //     console.log("Error al imprimir el scorm, por favor valide.");
+  //   }
+  // }
 
   getData(){
     setInterval(()=>{
-      this.puntajeMax = this.player.scormResult.scorePercent;
+
+        if(this.player.scormResult == undefined){
+          this.puntajeMax = "En proceso";
+        }else if(this.player.scormResult == null){
+          this.puntajeMax = "En proceso";
+        }else{
+          this.puntajeMax = this.player.scormResult.scorePercent;
+        }
+
+        // if(this.player.scormResult.runtimeData != undefined){
+        //   console.log(this.player.scormResult.runtimeData["cmi.completion_status"]);
+        // }
 
     }, 500);
+
+    this.player.initializeEvent.subscribe(val => { console.log('initializeEvent:', val); }); 
+    this.player.setValueEvent.subscribe(val => { console.log('setValueEvent:', val); }); 
+    this.player.getValueEvent.subscribe(val => { console.log('getValueEvent:', val); }); 
+    this.player.finishEvent.subscribe(val => { console.log('finishEvent:', val); }); 
+    this.player.commitEvent.subscribe(val => { console.log('commitEvent:', val); });
   }
 }

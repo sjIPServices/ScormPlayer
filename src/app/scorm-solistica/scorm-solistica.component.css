@@ -1,0 +1,24 @@
+.divScorm{
+    display: flex;
+    justify-content: center;
+}
+
+.divIframe{
+    width: 700px;
+    height: 500px;
+}
+
+.IframeScorm{
+    width: 90%;
+    height: 100%;
+}
+
+.subTitlePage{
+    text-align: center;
+    font-family: arial;
+    margin: 0px 35px 0px 35px;
+}
+
+.datosScorm{
+    margin: 0px 110px 0px 110px;
+}
