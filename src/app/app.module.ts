@@ -11,12 +11,14 @@ import { ScormService } from './services/ScormPlayer-Services';
 // Componentes
 import { VisualizarScormComponent } from './visualizar-scorm/visualizar-scorm.component';
 import { ScormSolisticaComponent } from './scorm-solistica/scorm-solistica.component';
+import { RegistrosScormComponent } from './registros-scorm/registros-scorm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VisualizarScormComponent,
-    ScormSolisticaComponent
+    ScormSolisticaComponent,
+    RegistrosScormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,22 @@
+.texto{
+    font-family: arial;
+}
+
+.contentInfo{
+    display: flex;
+    justify-content: center;
+}
+
+.infoUser{
+    margin: 0px 30px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.ScormResult{
+    margin: 0px 30px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+}

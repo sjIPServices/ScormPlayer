@@ -1,0 +1,18 @@
+<div class="contentInfo">
+    <div class="infoUser | texto" *ngIf="infoDB">
+        <h2>Información del usuario</h2>
+
+        <p><strong>Nombre:</strong> {{infoDB.user.name}}</p>
+        <p><strong>Email:</strong> {{infoDB.user.correo}}</p>
+        <p><strong>Rol:</strong> {{infoDB.user.rol}}</p>
+        <p><strong>Telefono:</strong> {{infoDB.user.telefono}}</p>
+    </div>
+
+    <div class="ScormResult | texto" *ngIf="infoDB">
+        <h2>Información del curso</h2>
+
+        <p><strong>Nombre:</strong> {{infoDB.scormResult.runtimeData["cmi.core.lesson_location"]}}</p>
+    </div>    
+</div>
+
+

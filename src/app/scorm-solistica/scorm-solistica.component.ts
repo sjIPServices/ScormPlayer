@@ -1,110 +1,56 @@
 import { Component, OnInit } from '@angular/core';
 import { NgScormPlayerService } from 'ng-scorm-player';
+import { peticionesScorm } from '../services/ApiScorm';
 
 @Component({
   selector: 'app-scorm-solistica',
   templateUrl: './scorm-solistica.component.html',
-  styleUrls: ['./scorm-solistica.component.css']
+  styleUrls: ['./scorm-solistica.component.css'],
+  providers: [peticionesScorm]
 })
 export class ScormSolisticaComponent implements OnInit {
-
-  // contadorVideo: number = 0;
-  // textoVideo: string = "No ha iniciado el curso";
-  mensajesTSV: Array<any>;
-  nuevaPagina: string;
   adelantar: string;
+  public infoDB: any;
+  public user: any;
 
-  constructor(private player: NgScormPlayerService) {
-    this.mensajesTSV = [
-      { 1: "Inició el Scorm" },
-      { 2: "Inició el curso" },
-      { 3: "Finalizo el video" },
-      { 4: "Se dirije a la siguiente sección" },
-      { 5: "Finalizo esta sección" }
-    ];
-
-    this.nuevaPagina = "";
+  constructor(private player: NgScormPlayerService, private _peticionesScorm: peticionesScorm) {
 
     this.adelantar = "1|1|0|0|0|0|0|0|0|0|0|0|0&&3&&";
   }
 
   ngOnInit(): void {
-    // this.getData();
-    // this.cambioPagina();
-    this.avanzarScorm();
+    // Obtiene la informacion que llega de la base de datos
+    this.ObtenerData();
 
-    this.player.SetValue(["cmi.core.lesson_location"], this.adelantar);
-    this.player.MySetValue(["cmi.core.lesson_location"], this.adelantar);
-    this.player.LMSSetValue(["cmi.core.lesson_location"], this.adelantar);
+    // Obtiene el objeto de la base de datos.
+    this.obtenerLocalStorage();
   }
 
-  avanzarScorm(){
-    this.player.SetValue(["cmi.core.lesson_location"], "1|1|0|0|0|0|0|0|0|0|0|0|0&&3&&");
+  // Obtiene el objeto de la base de datos.
+  obtenerLocalStorage(){
+    var aValue: string = localStorage.getItem('userInfo');
+
+    this.user = JSON.parse(aValue).user;
+    // let user = localStorage.getItem('userInfo')
+    // this.user= JSON.parse(user).user;
+    console.log(JSON.parse(aValue).aValue);
   }
 
+  // Obtiene la informacion que llega de la base de datos
+  ObtenerData(){
+    this._peticionesScorm.getDataScorm().subscribe(
+      result => {
+        this.infoDB = result;
+        console.log(this.infoDB);
+        this.player.commitEvent.subscribe(val => {
+          // console.log(val);
+          this.player.SetValue(["cmi.core.lesson_location"], this.infoDB.scormResult.runtimeData["cmi.core.lesson_location"]);
+        });
 
-
-  getData(){
-    // this.player.initializeEvent.subscribe(val => { console.log("Mio 1 - " + 'initializeEvent:', val); }); 
-    this.player.setValueEvent.subscribe(val => { console.log("Mio 2 - " + 'setValueEvent:', val); }); 
-    // this.player.getValueEvent.subscribe(val => { console.log("Mio 3 - " + 'getValueEvent:', val); }); 
-    // this.player.finishEvent.subscribe(val => { console.log("Mio 4 - " + 'finishEvent:', val); }); 
-    this.player.commitEvent.subscribe(val => { console.log("Mio 5 - " + 'commitEvent:', val); });
-    // this.player.commitEvent.subscribe(val => { console.log("Mio 5 - " + 'commitEvent:', val); });
-
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
-
-  cambioPagina(){
-    this.player.SetValue(["cmi.core.lesson_location"], this.adelantar);
-    this.player.MySetValue(["cmi.core.lesson_location"], this.adelantar);
-    this.player.LMSSetValue(["cmi.core.lesson_location"], this.adelantar);
-
-    this.player.setValueEvent.subscribe(val => {
-      this.player.SetValue(["cmi.core.lesson_location"], this.adelantar);
-      this.player.MySetValue(["cmi.core.lesson_location"], this.adelantar);
-      this.player.LMSSetValue(["cmi.core.lesson_location"], this.adelantar);
-    }); 
-
-
-    this.player.commitEvent.subscribe(val => {
-
-      this.player.SetValue(["cmi.core.lesson_location"], this.adelantar);
-      this.player.MySetValue(["cmi.core.lesson_location"], this.adelantar);
-      this.player.LMSSetValue(["cmi.core.lesson_location"], this.adelantar);
-
-      // // console.log("Mio 5 - ", val.runtimeData["cmi.core.lesson_location"]);
-      // let paginaScorm = val.runtimeData["cmi.core.lesson_location"]
-
-      // if(this.nuevaPagina == "" && paginaScorm != undefined){
-      //   this.nuevaPagina = paginaScorm;
-      //   console.log("Miooooo ---- " + this.nuevaPagina);
-      //   //alert("Se modifico la variable");
-      //   console.log("Mi variable " + typeof(this.nuevaPagina));
-      //   console.log("Variable del scorm " + typeof(paginaScorm));
-
-      // }else if(this.nuevaPagina == paginaScorm && this.nuevaPagina != ""){
-      //   //alert("Son iguales");
-      //   console.log("Son iguales");
-      //   console.log("Mi variable ------------ " + this.nuevaPagina);
-      //   console.log("variable del scorm ----- " + paginaScorm);
-
-      // }else if(this.nuevaPagina != paginaScorm && this.nuevaPagina != ""){
-      //   //alert("Son diferentes");
-      //   console.log("Son diferentes");
-      //   console.log("Mi variable ------------ " + this.nuevaPagina);
-      //   console.log("variable del scorm ----- " + paginaScorm);
-
-      // }
-      
-    });
-
-    // alert(this.mensajesTSV[this.contadorVideo][this.contadorVideo = ++ this.contadorVideo]);
-
-    // if(this.contadorVideo == 5){
-    //   this.contadorVideo = 2;
-    //   alert(this.mensajesTSV[this.contadorVideo][this.contadorVideo = ++ this.contadorVideo]);
-    // }
-
-  }
-
 }

@@ -2,3 +2,17 @@
     text-align: center;
     font-family: arial;
 }
+
+nav{
+    margin: 20px 0;
+}
+
+nav a{
+    margin: 2px 10px 2px 10px;
+    padding: 0px 5px;
+    font-size: 18px;
+    font-family: arial;
+    text-decoration: none;
+    border-left: 1px solid;
+    color: black;
+}
